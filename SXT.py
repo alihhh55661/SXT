@@ -272,58 +272,92 @@ class OLD_CLONER:
         self.main()
 
     
+    import random
+import string
+from concurrent.futures import ThreadPoolExecutor
+import sys
+
+class YourClass:
+    def __init__(self):
+        self.gen = []
+
+    def banner(self):
+        # هنا يمكنك وضع محتوى دالة banner الخاصة بك
+        print("Banner displayed")
+
+    def CloneOld(self, ids, passlist):
+        # هنا يمكنك وضع الكود الخاص بـ CloneOld
+        print(f"Cloning {ids} with passlist: {passlist}")
+
     def oldClone(self, series):
-    self.banner()
-    if series == '2008':
-        self.uX = '10000000'
-        self.uG = 8
-    elif series == '2009':
-        self.uX = '1000000'
-        self.uG = 9
-    elif series == '2010':
-        self.uX = '100000'
-        self.uG = 10
-    elif series == '2011':
-        self.uX = '10000'
-        self.uG = 10
-    elif series == '2012':
-        self.uX = '10000'
-        self.uG = 10
-    elif series == '2013':
-        self.uX = '10000'
-        self.uG = 10
+        self.banner()
+        
+        # تحديد القيم بناءً على السنة
+        if series == '2008':
+            self.uX = '10000000'
+            self.uG = 8
+        elif series == '2009':
+            self.uX = '1000000'
+            self.uG = 9
+        elif series == '2010':
+            self.uX = '100000'
+            self.uG = 10
+        elif series == '2011':
+            self.uX = '10000'
+            self.uG = 10
+        elif series == '2012':
+            self.uX = '10000'
+            self.uG = 10
+        elif series == '2013':
+            self.uX = '10000'
+            self.uG = 10
+        else:
+            self.uX = '100000'
+            self.uG = 9  # قيمة افتراضية
 
-    # تم إزالة الأسطر غير الضرورية
-    print('EXAMPLE  - 5000,10000')
-    limit = int(input('SELECT   - '))
-    
-    with ThreadPoolExecutor(max_workers=55) as executor:
-        for _ in range(limit):
-            aiman = executor.submit(generate_id)
-            self.gen.append(aiman.result())  # انتظار النتيجة
+        print('EXAMPLE  - 5000,10000')
+        try:
+            limit = int(input('SELECT   - '))
+        except ValueError:
+            print("Please enter a valid number.")
+            return
 
-    self.banner()
-    print('TOTAL IDS - ' + str(len(self.gen)))
-            print('UID SERIES - ' + series)
-            print('IF NO RESULT USE FLIGHT MODE')
-            print('-------------------------------')
-            for love in self.gen:
-                ids = self.uX + love
-                passlist = [
-                    '1234554321',
-                    '112233',
-                    '11223344',
-                    '11112222',
-                    '12121212',
-                    '123123123',
-                    '1122334455',
-                    'password',
-                    '@@@###']
-                Mr_Code.submit(self.CloneOld, ids, passlist)
-                sys.exit('\n-------------------------------')
-                return None
-                if not ''.join:
-                    pass
+        with ThreadPoolExecutor(max_workers=55) as Mr_Code:
+            for a in range(limit):
+                aiman = ''.join(random.choice(string.digits) for _ in range(self.uG))
+                self.gen.append(aiman)
+                self.banner()
+                print(f'TOTAL IDS - {len(self.gen)}')
+                print(f'UID SERIES - {series}')
+                print('IF NO RESULT USE FLIGHT MODE')
+                print('-------------------------------')
+                for love in self.gen:
+                    ids = self.uX + love
+                    passlist = [
+                        '1234554321',
+                        '112233',
+                        '11223344',
+                        '11112222',
+                        '12121212',
+                        '123123123',
+                        '1122334455',
+                        'password',
+                        '@@@###'
+                    ]
+                    Mr_Code.submit(self.CloneOld, ids, passlist)
+
+                # انتظر حتى تكمل المهام إذا كانت معتمدة على التوازي
+                # لاحظ أن sys.exit() غير مستحسن هنا ويجب إزالته من الكود
+                print('Process completed for all IDs')
+        
+        # لا تقم بإنهاء البرنامج داخل الكود بهذه الطريقة
+        # sys.exit('\n-------------------------------')
+
+        return None
+
+# اختبار الكود:
+your_class_instance = YourClass()
+your_class_instance.oldClone('2009')
 
     
     def ugen(self):
