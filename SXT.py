@@ -270,12 +270,9 @@ class OLD_CLONER:
             self.oldClone('2013')
             return None
         self.main()
-from concurrent.futures import ThreadPoolExecutor
 
-def generate_id():
-    return ''.join(random.choice(string.digits) for _ in range(self.uG))
-
-def oldClone(self, series):
+    
+    def oldClone(self, series):
     self.banner()
     if series == '2008':
         self.uX = '10000000'
