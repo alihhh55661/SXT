@@ -270,38 +270,43 @@ class OLD_CLONER:
             self.oldClone('2013')
             return None
         self.main()
+from concurrent.futures import ThreadPoolExecutor
 
-    
-    def oldClone(self, series):
-        self.banner()
-        if series == '2008':
-            self.uX = '10000000'
-            self.uG = 8
-        if series == '2009':
-            self.uX = '1000000'
-            self.uG = 9
-        if series == '2010':
-            self.uX = '100000'
-            self.uG = 10
-        if series == '2011':
-            self.uX = '10000'
-            self.uG = 10
-        if series == '2012':
-            self.uX = '10000'
-            self.uG = 10
-        if series == '2013':
-            self.uX = '10000'
-            self.uG = 10
-        self.uX = '100000'
+def generate_id():
+    return ''.join(random.choice(string.digits) for _ in range(self.uG))
+
+def oldClone(self, series):
+    self.banner()
+    if series == '2008':
+        self.uX = '10000000'
+        self.uG = 8
+    elif series == '2009':
+        self.uX = '1000000'
         self.uG = 9
-        print('EXAMPLE  - 5000,10000')
-        limit = int(input('SELECT   - '))
-        for a in range(limit):
-            aiman = ''.join(random.choice(string.digits) for _ in range(self.uG))
-            self.gen.append(aiman)
-            Mr_Code = ThreadPoolExecutor(max_workers = 55)
-            self.banner()
-            print('TOTAL IDS - ' + str(len(self.gen)))
+    elif series == '2010':
+        self.uX = '100000'
+        self.uG = 10
+    elif series == '2011':
+        self.uX = '10000'
+        self.uG = 10
+    elif series == '2012':
+        self.uX = '10000'
+        self.uG = 10
+    elif series == '2013':
+        self.uX = '10000'
+        self.uG = 10
+
+    # تم إزالة الأسطر غير الضرورية
+    print('EXAMPLE  - 5000,10000')
+    limit = int(input('SELECT   - '))
+    
+    with ThreadPoolExecutor(max_workers=55) as executor:
+        for _ in range(limit):
+            aiman = executor.submit(generate_id)
+            self.gen.append(aiman.result())  # انتظار النتيجة
+
+    self.banner()
+    print('TOTAL IDS - ' + str(len(self.gen)))
             print('UID SERIES - ' + series)
             print('IF NO RESULT USE FLIGHT MODE')
             print('-------------------------------')
